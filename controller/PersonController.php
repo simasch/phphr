@@ -20,7 +20,7 @@ class PersonController
 
             $person = $this->personDao->find($_POST['id']);
             $person->setName($_POST['name']);
-            $this->personDao->update($person);
+            $person = $this->personDao->update($person);
 
             $message = 'Person saved';
 

@@ -1,20 +1,48 @@
 <html>
-<head></head>
+<head>
+    <title>Person Editor</title>
+
+    <?php
+    include_once 'template/header.php';
+    ?>
+</head>
+
 
 <body>
 
-<form action="index.php" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
 
-    <h1>Person <?php echo $person->getId(); ?></h1>
+            <h1>Person <?php echo $person->getId(); ?></h1>
 
-    Name: <input type="text" name="id" readonly value="<?php echo $person->getId(); ?>"/>
-    Name: <input type="text" name="name" value="<?php echo $person->getName(); ?>"/>
+            <form action="index.php" method="post">
 
-    <button type="submit">Save</button>
+                <div class="form-group">
+                    <label for="id">Id</label>
+                    <input id="id" name="id" type="text" class="form-control"
+                           value="<?php echo $person->getId(); ?>" readonly>
+                </div>
 
-</form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" class="form-control"
+                           value="<?php echo $person->getName(); ?>">
+                </div>
 
-<p><?php echo $message; ?></p>
+                <button type="submit" class="btn btn-default">Save</button>
+                &nbsp;&nbsp;<a href="index.php">Back</a>
+
+            </form>
+
+            <p><?php echo $message; ?></p>
+        </div>
+    </div>
+</div>
+
+<?php
+include_once 'template/footer.php';
+?>
 
 </body>
 </html>
