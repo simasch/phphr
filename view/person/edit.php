@@ -18,20 +18,20 @@ include_once 'template/navbar.php';
     <div class="row">
         <div class="col-md-12">
 
-            <h1>Person <?php echo $person->getId(); ?></h1>
+            <h1>Person <?php echo $vm->getPerson()->getId(); ?></h1>
 
             <form action="person.php" method="post">
 
                 <div class="form-group">
                     <label for="id">Id</label>
                     <input id="id" name="id" type="text" class="form-control"
-                           value="<?php echo $person->getId(); ?>" readonly>
+                           value="<?php echo $vm->getPerson()->getId(); ?>" readonly>
                 </div>
 
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input id="name" name="name" type="text" class="form-control"
-                           value="<?php echo $person->getName(); ?>">
+                           value="<?php echo $vm->getPerson()->getName(); ?>">
                 </div>
 
                 <button type="submit" class="btn btn-default">Save</button>
@@ -39,7 +39,7 @@ include_once 'template/navbar.php';
 
             </form>
 
-            <p><?php echo $message; ?></p>
+            <p><?php echo $vm->getMessage(); ?></p>
         </div>
     </div>
 </div>

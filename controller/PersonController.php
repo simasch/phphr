@@ -1,6 +1,7 @@
 <?php
 
 include_once 'model/Person.php';
+include_once 'viewmodel/PersonEditViewModel.php';
 include_once 'dao/PersonDao.php';
 
 include_once 'log4php/Logger.php';
@@ -53,17 +54,19 @@ class PersonController
 
     private function add()
     {
-        $person = new Person(null, '');
-        $message = '';
+        $vm = new PersonEditViewModel();
+        $vm->setPerson(new Person(null, ''));
+        $vm->setMessage('');
 
         include 'view/person/edit.php';
     }
 
     private function getById($id)
     {
-        $person = $this->personDao->find($id);
+        $vm = new PersonEditViewModel();
+        $vm->setPerson($this->personDao->find($id));
 
-        $message = '';
+        $vm->setMessage('');
 
         include 'view/person/edit.php';
     }
@@ -77,17 +80,20 @@ class PersonController
 
     private function post($id, $name)
     {
+        $vm = new PersonEditViewModel();
         if ($id == null) {
             $person = new Person(null, $name);
             $person = $this->personDao->insert($person);
 
-            $message = 'Person created';
+            $vm->setPerson($person);
+            $vm->setMessage('Person created');
         } else {
             $person = $this->personDao->find($id);
             $person->setName($name);
             $person = $this->personDao->update($person);
 
-            $message = 'Person saved';
+            $vm->setPerson($person);
+            $vm->setMessage('Person saved');
         }
 
         include 'view/person/edit.php';
