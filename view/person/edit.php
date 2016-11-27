@@ -3,7 +3,7 @@
     <title>Person Editor</title>
 
     <?php
-    $root = realpath($_SERVER["DOCUMENT_ROOT"]) . "/hr";
+    $root = dirname(__FILE__) . "/../..";
 
     include_once "$root/view/template/header.php";
     ?>
