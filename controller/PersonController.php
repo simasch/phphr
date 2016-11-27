@@ -21,35 +21,76 @@ class PersonController
 
     public function invoke()
     {
-        $this->logger->info("invoke()");
-
-        $message = '';
+        $this->logger->info("start");
 
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
-                if (isset($_GET['id'])) {
-                    $person = $this->personDao->find($_GET['id']);
-                    include 'view/person/edit.php';
+                if (isset($_GET['action'])) {
+                    switch ($_GET['action']) {
+                        case 'new':
+                            $this->add();
+                            break;
+                        case 'edit':
+                            if (isset($_GET['id'])) {
+                                $this->getById($_GET['id']);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 } else {
-                    $people = $this->personDao->listPeople();
-                    include 'view/person/list.php';
+                    $this->getAll();
                 }
-                return;
+                break;
             case 'POST':
-                if (isset($_POST['id'])) {
-                    $person = $this->personDao->find($_POST['id']);
-                    $person->setName($_POST['name']);
-                    $person = $this->personDao->update($person);
-
-                    $message = 'Person saved';
-
-                    include 'view/person/edit.php';
-                }
-                return;
+                $this->post($_POST['id'], $_POST['name']);
+                break;
             default:
                 http_response_code(405);
-                return;
+                break;
         }
+    }
+
+    private function add()
+    {
+        $person = new Person(null, '');
+        $message = '';
+
+        include 'view/person/edit.php';
+    }
+
+    private function getById($id)
+    {
+        $person = $this->personDao->find($id);
+
+        $message = '';
+
+        include 'view/person/edit.php';
+    }
+
+    private function getAll()
+    {
+        $people = $this->personDao->listPeople();
+
+        include 'view/person/list.php';
+    }
+
+    private function post($id, $name)
+    {
+        if ($id == null) {
+            $person = new Person(null, $name);
+            $person = $this->personDao->insert($person);
+
+            $message = 'Person created';
+        } else {
+            $person = $this->personDao->find($id);
+            $person->setName($name);
+            $person = $this->personDao->update($person);
+
+            $message = 'Person saved';
+        }
+
+        include 'view/person/edit.php';
     }
 
 }

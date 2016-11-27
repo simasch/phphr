@@ -18,6 +18,8 @@ include_once 'template/navbar.php';
 
             <h1>People</h1>
 
+            <p><a href="person.php?action=new">Add person</a></p>
+
             <table class="table table-bordered">
                 <tr>
                     <td>Id</td>
@@ -27,7 +29,7 @@ include_once 'template/navbar.php';
 
                 foreach ($people as $person) {
                     echo '<tr>
-                <td><a href="person.php?id=' . $person->getId() . '">' . $person->getId() . '</a></td>
+                <td><a href="person.php?action=edit&id=' . $person->getId() . '">' . $person->getId() . '</a></td>
                 <td>' . $person->getName() . '</td>
               </tr>';
                 }

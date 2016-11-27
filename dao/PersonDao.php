@@ -23,7 +23,13 @@ class PersonDao
         $stmt->bindParam(1, $person->getName());
         $stmt->execute();
 
+        $id = $this->pdo->lastInsertId();
+
+        $person->setId($id);
+
         unset($stmt);
+
+        return $person;
     }
 
     public function find($id)
