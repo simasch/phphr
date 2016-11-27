@@ -3,7 +3,9 @@
     <title>Person Editor</title>
 
     <?php
-    include_once 'template/header.php';
+    $root = realpath($_SERVER["DOCUMENT_ROOT"]) . "/hr";
+
+    include_once "$root/view/template/header.php";
     ?>
 </head>
 
@@ -11,7 +13,7 @@
 <body>
 
 <?php
-include_once 'template/navbar.php';
+include_once "$root/view/template/navbar.php";
 ?>
 
 <div class="container">
@@ -20,7 +22,7 @@ include_once 'template/navbar.php';
 
             <h1>Person <?php echo $vm->getPerson()->getId(); ?></h1>
 
-            <form action="person.php" method="post">
+            <form action="index.php" method="post">
 
                 <div class="form-group">
                     <label for="id">Id</label>
@@ -35,7 +37,7 @@ include_once 'template/navbar.php';
                 </div>
 
                 <button type="submit" class="btn btn-default">Save</button>
-                &nbsp;&nbsp;<a href="person.php">Back</a>
+                &nbsp;&nbsp;<a href="index.php">Back</a>
 
             </form>
 
@@ -45,7 +47,7 @@ include_once 'template/navbar.php';
 </div>
 
 <?php
-include_once 'template/footer.php';
+include_once "$root/view/template/footer.php";
 ?>
 
 </body>

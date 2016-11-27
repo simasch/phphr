@@ -3,7 +3,9 @@
     <title>Index</title>
 
     <?php
-    include_once 'template/header.php';
+    $root = realpath($_SERVER["DOCUMENT_ROOT"]) . "/hr";
+
+    include_once "$root/view/template/header.php";
     ?>
 </head>
 
@@ -11,7 +13,7 @@
 <body>
 
 <?php
-include_once 'template/navbar.php';
+include_once "$root/view/template/navbar.php";
 ?>
 
 <div class="container">
@@ -21,14 +23,14 @@ include_once 'template/navbar.php';
             <h1>Hi</h1>
 
             <ul class="list-group">
-                <li class="list-group-item"><a href="person.php">People</a></li>
+                <li class="list-group-item"><a href="view/person/index.php">People</a></li>
             </ul>
         </div>
     </div>
 </div>
 
 <?php
-include_once 'template/footer.php';
+include_once "$root/view/template/footer.php";
 ?>
 
 </body>

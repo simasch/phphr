@@ -1,13 +1,16 @@
 <?php
+$root = realpath($_SERVER["DOCUMENT_ROOT"]) . "/hr";
 
-include_once 'model/Person.php';
-include_once 'viewmodel/PersonEditViewModel.php';
-include_once 'dao/PersonDao.php';
+include_once "$root/model/Person.php";
+include_once "$root/viewmodel/PersonEditViewModel.php";
+include_once "$root/dao/PersonDao.php";
 
-include_once 'log4php/Logger.php';
+include_once "$root/log4php/Logger.php";
 
 class PersonController
 {
+    private $root;
+
     private $personDao;
     private $logger;
 
@@ -15,7 +18,8 @@ class PersonController
     {
         $this->personDao = new PersonDao();
 
-        Logger::configure('log4php.xml');
+        $this->root = realpath($_SERVER["DOCUMENT_ROOT"]) . "/hr";
+        Logger::configure($this->root. "/log4php.xml");
 
         $this->logger = Logger::getLogger('PersonController');
     }
@@ -58,7 +62,7 @@ class PersonController
         $vm->setPerson(new Person(null, ''));
         $vm->setMessage('');
 
-        include 'view/person/edit.php';
+        include $this->root . '/view/person/edit.php';
     }
 
     private function getById($id)
@@ -68,14 +72,14 @@ class PersonController
 
         $vm->setMessage('');
 
-        include 'view/person/edit.php';
+        include $this->root . '/view/person/edit.php';
     }
 
     private function getAll()
     {
         $people = $this->personDao->listPeople();
 
-        include 'view/person/list.php';
+        include $this->root . '/view/person/list.php';
     }
 
     private function post($id, $name)
@@ -96,7 +100,7 @@ class PersonController
             $vm->setMessage('Person saved');
         }
 
-        include 'view/person/edit.php';
+        include $this->root . '/view/person/edit.php';
     }
 
 }

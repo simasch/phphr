@@ -1,6 +1,7 @@
 <?php
+$root = realpath($_SERVER["DOCUMENT_ROOT"]) . "/hr";
 
-include_once 'model/Person.php';
+include_once "$root/model/Person.php";
 
 class PersonDao
 {

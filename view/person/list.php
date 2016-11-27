@@ -3,13 +3,15 @@
     <title>Person List</title>
 
     <?php
-    include_once 'template/header.php';
+    $root = realpath($_SERVER["DOCUMENT_ROOT"]) . "/hr";
+
+    include_once "$root/view/template/header.php";
     ?>
 </head>
 <body>
 
 <?php
-include_once 'template/navbar.php';
+include_once "$root/view/template/navbar.php";
 ?>
 
 <div class="container">
@@ -18,7 +20,7 @@ include_once 'template/navbar.php';
 
             <h1>People</h1>
 
-            <p><a href="person.php?action=new">Add person</a></p>
+            <p><a href="index.php?action=new">Add person</a></p>
 
             <table class="table table-bordered">
                 <tr>
@@ -29,7 +31,7 @@ include_once 'template/navbar.php';
 
                 foreach ($people as $person) {
                     echo '<tr>
-                <td><a href="person.php?action=edit&id=' . $person->getId() . '">' . $person->getId() . '</a></td>
+                <td><a href="index.php?action=edit&id=' . $person->getId() . '">' . $person->getId() . '</a></td>
                 <td>' . $person->getName() . '</td>
               </tr>';
                 }
@@ -42,7 +44,7 @@ include_once 'template/navbar.php';
 </div>
 
 <?php
-include_once 'template/footer.php';
+include_once "$root/view/template/footer.php";
 ?>
 
 </body>

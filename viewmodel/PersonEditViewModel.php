@@ -2,7 +2,6 @@
 
 class PersonEditViewModel
 {
-
     private $person;
     private $message;
 
