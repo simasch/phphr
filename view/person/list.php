@@ -7,6 +7,11 @@
     ?>
 </head>
 <body>
+
+<?php
+include_once 'template/navbar.php';
+?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -22,7 +27,7 @@
 
                 foreach ($people as $person) {
                     echo '<tr>
-                <td><a href="index.php?id=' . $person->getId() . '">' . $person->getId() . '</a></td>
+                <td><a href="person.php?id=' . $person->getId() . '">' . $person->getId() . '</a></td>
                 <td>' . $person->getName() . '</td>
               </tr>';
                 }
