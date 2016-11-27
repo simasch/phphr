@@ -1,7 +1,7 @@
 <configuration xmlns="http://logging.apache.org/log4php/">
     <appender name="phphrFile" class="LoggerAppenderFile">
         <layout class="LoggerLayoutPattern">
-            <param name="conversionPattern" value="%d %-5p [%c] %s{REQUEST_METHOD}: %m%n"/>
+            <param name="conversionPattern" value="%d %-5p [%c] %s{REQUEST_METHOD} %C{0}.%M: %m%n"/>
         </layout>
         <param name="file" value="phphr.log"/>
     </appender>

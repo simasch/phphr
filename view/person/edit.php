@@ -20,7 +20,7 @@ include_once 'template/navbar.php';
 
             <h1>Person <?php echo $person->getId(); ?></h1>
 
-            <form action="index.php" method="post">
+            <form action="person.php" method="post">
 
                 <div class="form-group">
                     <label for="id">Id</label>
@@ -35,7 +35,7 @@ include_once 'template/navbar.php';
                 </div>
 
                 <button type="submit" class="btn btn-default">Save</button>
-                &nbsp;&nbsp;<a href="index.php">Back</a>
+                &nbsp;&nbsp;<a href="person.php">Back</a>
 
             </form>
 
